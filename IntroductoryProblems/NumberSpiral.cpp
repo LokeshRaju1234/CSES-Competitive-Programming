@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define ll long long
 int main()
 {
     ios::sync_with_stdio(false);
@@ -10,43 +10,29 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long x, y;
+        ll x, y;
         cin >> x >> y;
-        // take max becasue the number eill present only in max co-ordinate
-        // like 2,3 -->max is 3 and num is present in the 3 x 3
-        long long n = max(x, y);
-        long long ans;
 
-        // we need to consider two cases
-        // one is if number is even and other is if number is odd
-        if (n % 2 == 0)
+        // Because square must be large enough to include both row and column.
+        ll m = max(x, y);
+        // gives you previous layer elements
+        ll r = (m - 1) * (m - 1);
+
+        // two cases
+        // if the max range is even then it starts from upper right corner
+        // to lower right corner
+        // similarly for odd case it starts from lower left corner to upper-right corner
+        if (m % 2 == 0)
         {
-            if (n == y)
-            {
-                // if n == column
-                // taking the previous square and adding the row will give you the value
-                ans = (n - 1) * (n - 1) + x;
-            }
-            else
-            {
-                // if n == row
-                ans = n * n - y + 1;
-            }
+            // we start from the current layer by adding prev layer elements
+            r += x + m - y;
         }
         else
         {
-            if (y == n)
-            {
-                ans = n * n - x + 1;
-            }
-            else
-            {
-
-                ans = (n - 1) * (n - 1) + y;
-            }
+            r += y + m - x;
         }
 
-        cout << ans << endl;
+        cout << r << endl;
     }
     return 0;
 }
