@@ -11,7 +11,7 @@ int main()
 
     int n;
     cin >> n;
-    for (int i = 1; i <= n; i++)
+    for (long long i = 1; i <= n; i++)
     {
         // k == 1 2 3 .. n boards for each board we need to find the
         // how to place two knights so that they cannot attack
@@ -21,7 +21,7 @@ int main()
         // there are 2 rectangles only attacks will happen i.e in 2 x 3 and 3 x 2
         // formula is 2 * (k - 2) (k - 1) and each rectangle gives 2 attacks
         //-->so to remove attacks 4 * (k - 2)(k - 1)
-        long long ans = (n * n * n * n - 9 * n * n + 24 * n - 16) / 2;
+        long long ans = (i * i * i * i - 9 * i * i + 24 * i - 16) / 2;
         cout << ans << endl;
     }
 
